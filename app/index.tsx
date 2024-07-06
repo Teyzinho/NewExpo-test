@@ -5,8 +5,8 @@ import { Link } from 'expo-router';
 const Home = () => {
   return (
     <View style={styles.container}>
-      <Text>index</Text>
-      <Link href={'profile'} >Go Profile<Link/>
+      <Text className="font-pblack" >index</Text>
+      <Link children='teste ' href={'/profile'}/>
     </View>
   )
 }
