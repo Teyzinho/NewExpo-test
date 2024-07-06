@@ -1,8 +1,11 @@
+import { View, Text } from 'react-native'
 import React from 'react'
 
-function Bookmark() {
+const Bookmark = () => {
   return (
-    <div>Bookmark</div>
+    <View>
+      <Text>Bookmark</Text>
+    </View>
   )
 }
 

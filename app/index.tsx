@@ -6,7 +6,7 @@ const Home = () => {
   return (
     <View style={styles.container}>
       <Text className="font-pblack" >index</Text>
-      <Link children='teste ' href={'/profile'}/>
+      <Link children='Go to home' href="/home" />
     </View>
   )
 }
