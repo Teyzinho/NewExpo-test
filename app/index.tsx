@@ -1,28 +1,52 @@
-import { StyleSheet, Text, View } from 'react-native';
-import React from 'react';
-import { Link } from 'expo-router';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { ScrollView } from 'react-native-gesture-handler';
+import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
+import React from "react";
+import { images } from "@/constants";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const Home = () => {
   return (
-    <SafeAreaView className='bg-primary h-full'>
-      <ScrollView contentContainerStyle={{ height : '100%'}}>
-        <View className='w-full justify-center items-center h-full px-4'>
+    <SafeAreaView className="bg-primary h-full">
+      <ScrollView contentContainerStyle={{ height: "100%" }}>
+        <View className="w-full justify-center items-center h-full px-4">
+          <Image
+            source={images.logo}
+            className="w-[130px] h-[84px]"
+            resizeMode="contain"
+          />
+          <Image
+            source={images.cards}
+            className="max-w-[380px] w-full h-[300px]"
+            resizeMode="contain"
+          />
+          <View className="relative mt-5">
+            <Text className="text-3xl text-white font-bold text-center">
+              Descubra Infinitas Possibilidade com{" "}
+              <Text className="text-secondary-200">Aura</Text>
+            </Text>
+            <Image
+              source={images.path}
+              className="w-[136px] h-[15px] absolute -bottom-2 -right-8"
+              resizeMode="contain"
+            />
+          </View>
 
+          <Text className="text-sm text-gray-100 mt-7 text-center font-pregular">
+            Aonde Criatividade encontra Inovação: Embarque em uma jornada de
+            exploração ilimitada com Aora
+          </Text>
         </View>
       </ScrollView>
     </SafeAreaView>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
 
 const styles = StyleSheet.create({
-    container: {
-        display: 'flex',
-        alignItems: 'center',
-        flex: 1,
-        justifyContent: 'center'
-    }
-})
+  container: {
+    display: "flex",
+    alignItems: "center",
+    flex: 1,
+    justifyContent: "center",
+  },
+});
