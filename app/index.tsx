@@ -2,6 +2,8 @@ import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { images } from "@/constants";
 import { SafeAreaView } from "react-native-safe-area-context";
+import CustomButton from "@/components/CustomButton";
+import { StatusBar } from "expo-status-bar";
 
 const Home = () => {
   return (
@@ -34,8 +36,16 @@ const Home = () => {
             Aonde Criatividade encontra Inovação: Embarque em uma jornada de
             exploração ilimitada com Aora
           </Text>
+
+          <CustomButton 
+            title="Continue com o Email"
+            handlePress={() => {}}
+            containerStyles="w-full mt-7"
+          />
         </View>
       </ScrollView>
+
+      <StatusBar backgroundColor="#161622" style={'light'}/>
     </SafeAreaView>
   );
 };
