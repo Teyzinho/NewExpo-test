@@ -17,7 +17,14 @@ interface GlobalContextType {
 }
 
 const GlobalContext = createContext<GlobalContextType | undefined>(undefined);
-export const useGlobalContext = () => useContext(GlobalContext);
+
+export const useGlobalContext = (): GlobalContextType => {
+  const context = useContext(GlobalContext);
+  if (context === undefined) {
+    throw new Error("useGlobalContext must be used within a GlobalProvider");
+  }
+  return context;
+};
 
 interface GlobalProviderProps {
   children: ReactNode;
