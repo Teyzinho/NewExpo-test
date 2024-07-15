@@ -1,11 +1,12 @@
-import { View, Text, Image, ScrollView } from "react-native";
+import { View, Text, Image, ScrollView, Alert } from "react-native";
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import { images } from "@/constants";
 import FormField from "@/components/FormField";
 import CustomButton from "@/components/CustomButton";
-import { Link } from "expo-router";
+import { Link, router } from "expo-router";
+import { singIn } from "@/lib/appwrite";
 
 const SingIn = () => {
   const [form, setForm] = useState({
@@ -14,7 +15,27 @@ const SingIn = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const submit = () => {};
+  const submit = async () => {
+    if (!form.email || !form.password) {
+      Alert.alert("Error", "Por favor preencha todos os campos");
+    }
+
+    setIsSubmitting(true);
+    try {
+      await singIn(form.email, form.password);
+
+      // set to global state...
+      router.replace("/home");
+    } catch (error: any) {
+      if (error.message) {
+        throw new Error(`Erro ao criar sessão: ${error.message}`);
+      } else {
+        throw new Error("Erro desconhecido ao criar sessão");
+      }
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <SafeAreaView className="bg-primary h-full">
