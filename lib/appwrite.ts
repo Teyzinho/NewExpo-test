@@ -1,13 +1,4 @@
-import { StatusBar } from "expo-status-bar";
-import {
-  StyleSheet,
-  Text,
-  View,
-  TextInput,
-  TouchableOpacity,
-} from "react-native";
-import { Client, Account, ID, Avatars, Databases, Query } from "react-native-appwrite";
-import React, { useState } from "react";
+import { Client, Account, ID, Avatars, Databases, Query, Models } from "react-native-appwrite";
 
 export const config = {
   endpoint: "https://cloud.appwrite.io/v1",
@@ -18,6 +9,16 @@ export const config = {
   videoCollectionId: "669120b30017673623bd",
   storageId: "669123da003a5f2a88e6",
 };
+
+const {
+  endpoint,
+  platform,
+  projectid,
+  databaseId,
+  userCollectionId,
+  videoCollectionId,
+  storageId
+} = config;
 
 let client;
 let account: any;
@@ -36,6 +37,10 @@ const databases = new Databases(client)
 //     await account.createEmailPasswordSession(email, password);
 //     // setLoggedInUser(await account.get());
 // }
+
+export interface VideosInterface extends Models.Document{
+  
+}
 
 export const createUser = async (
   email: string,
@@ -101,5 +106,18 @@ export const getCurrentUser = async () => {
     return currentUser.documents[0]
   } catch (error:any) {
     console.log(error)
+  }
+}
+
+export const getAllPosts = async () => {
+  try {
+    const posts = await databases.listDocuments(
+      databaseId,
+      videoCollectionId
+    )
+
+    return posts.documents;
+  } catch (error:any) {
+    
   }
 }
